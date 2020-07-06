@@ -25,6 +25,8 @@ We will inspect the quality of the code and your design approach, however please
 - people don't have unique keys, so probably best to leave them nested within the records rather than normalise them out
 - results pages have both an index/page_number and also prev/next links. Experience suggests it'll be easier to embed the main search url in code and increment a page count, than to use the prev/next links.
 - Added Material-UI and removed the fluff CRA put in.
+- Add a basic APi read to get first page of data. Component state is fine for this stage of development
+- 
 
 
 # Setup
