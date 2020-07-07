@@ -47,6 +47,7 @@ export default function () {
     {
       records.map((record: Record) =>
         <GalleryCard
+          key={record.id}
           artwork={record}
         />
       )
