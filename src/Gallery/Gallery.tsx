@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import GalleryGrid from '../GalleryGrid/GalleryGrid'
+import GalleryCard from '../GalleryCard/GalleryCard'
 
 const useStyles = makeStyles({
   root: {
@@ -24,13 +25,13 @@ const useStyles = makeStyles({
   }
 })
 
-interface Person {
+export interface Person {
   prefix?: string// null,
   personid: number// 26704,
   displayname: string;// "Katsushika Sōji (Isai)"
 }
 
-interface Record {
+export interface Record {
   id: number;
   medium: string;
   people: Person[];
