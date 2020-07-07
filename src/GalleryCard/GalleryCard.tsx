@@ -6,7 +6,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 import {
-  Person,
   Record,
 } from '../Gallery/Gallery'
 
