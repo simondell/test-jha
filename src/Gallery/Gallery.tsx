@@ -2,18 +2,19 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import Container from '@material-ui/core/Container';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { styled } from '@material-ui/core/styles';
 import { Waypoint } from 'react-waypoint';
 import GalleryGrid from '../GalleryGrid/GalleryGrid';
 import GalleryCard from '../GalleryCard/GalleryCard';
+
+import { styled } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const ProgressWrapper = styled('div')({
   display: 'flex',
   justifyContent: 'center',
   padding: '24px 0',
-})
+  width: '100%',
+});
 
 export interface Person {
   displayname?: string;
@@ -31,66 +32,79 @@ export interface Record {
   title: string;
 }
 
-async function readRecords (
-  page: number,
-  resolve: Function,
-){
-  try {
-    const url = `https://api.harvardartmuseums.org/object?classification=Prints&hasimage=1&sort=title&sortorder=desc&apikey=c28e4be0-4c0e-11ea-90d6-25d9a9fe80fc&size=10&page=${page}`;
-    const response = await fetch(url);
-
-    if(!response.ok) throw new Error('Error reading from API');
-
-    resolve(response)
-  }
-  catch (err) {
-    console.error(err)
-  }
-}
-
 export default function () {
-  const [page, setPage] = useState(0)
-  const [pageCount, setPageCount] = useState(0)
+  const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState(false)
+  const [hasMore, setHasMore] = useState(false)
   const [records, setRecords] = useState([] as Record[]);
 
-  async function captureRecords (response: Response) {
-    const body = await response.json()
-    setPage(body.info.page)
-    setPageCount(body.info.pageCount)
-    setRecords([
-      ...records,
-      ...body.records,
-    ])
-  }
+  useEffect(() => {
+    async function readRecords (page: number) {
+      if(loading) return;
+
+      try {
+        const url = `https://api.harvardartmuseums.org/object?classification=Prints&hasimage=1&sort=title&sortorder=desc&apikey=c28e4be0-4c0e-11ea-90d6-25d9a9fe80fc&size=10&page=${page}`;
+        setLoading(true);
+        const response = await fetch(url);
+
+        if(!response.ok) throw new Error('Error reading from API');
+
+        const body = await response.json()
+        setHasMore(body.info.page < body.info.pages)
+        setRecords([
+          ...records,
+          ...body.records,
+        ])
+        setLoading(false);
+      }
+      catch (err) {
+        console.error(err)
+      }
+    }
+
+    readRecords(page);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page])
 
   function readNextPage () {
-    if(pageCount && page && page >= pageCount) return;
-
-    readRecords(page + 1, captureRecords);
+    setPage(page + 1)
   }
 
-  return (
-    <>
-    <GalleryGrid>
-    {
-      records.map((record: Record) =>
-        <GalleryCard
-          key={record.id}
-          artwork={record}
-        />
-      )
-    }
-    </GalleryGrid>
-    <Waypoint
-      onEnter={readNextPage}
-      topOffset="-100px"
-    >
+  if(records.length === 0) {
+    return (
       <ProgressWrapper>
         <CircularProgress
           size="40px"
         />
       </ProgressWrapper>
-    </Waypoint>
+    );
+  }
+
+  return (
+    <>
+      <GalleryGrid>
+      {
+        records.map((record: Record) =>
+          <GalleryCard
+            key={record.id}
+            artwork={record}
+          />
+        )
+      }
+      </GalleryGrid>
+
+     {hasMore &&
+      <Waypoint
+        onEnter={readNextPage}
+        topOffset="-100px"
+      >
+        <ProgressWrapper>
+          <CircularProgress
+            size="40px"
+          />
+        </ProgressWrapper>
+      </Waypoint>
+    }
     </>
   )
 }
