@@ -43,9 +43,7 @@ function App() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Gallery
-        records={records}
-      />
+      <Gallery />
     </div>
   );
 }

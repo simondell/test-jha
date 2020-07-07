@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -36,17 +39,34 @@ interface Record {
   title: string;
 }
 
-interface Props {
-  records: Record[]
-}
-
-export default function (props: Props) {
+export default function () {
   const classes = useStyles()
+
+  const [records, setRecords] = useState([] as Record[]);
+
+  useEffect(() => {
+    async function readRecords () {
+      try {
+        const url = 'https://api.harvardartmuseums.org/object?classification=Prints&hasimage=1&sort=title&sortorder=desc&apikey=c28e4be0-4c0e-11ea-90d6-25d9a9fe80fc&size=10&page=2';
+        const response = await fetch(url);
+
+        if(!response.ok) throw new Error('Error reading records from API');
+
+        const body = await response.json()
+        setRecords(body.records)
+      }
+      catch (err) {
+        console.error(err)
+      }
+    }
+
+    readRecords()
+  }, [])
 
   return (
     <GalleryGrid>
     {
-      props.records.map((record: Record) =>
+      records.map((record: Record) =>
           <Card
             className={classes.root}
             key={record.id}
