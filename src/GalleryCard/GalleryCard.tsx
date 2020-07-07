@@ -11,6 +11,8 @@ import {
 
 const useStyles = makeStyles({
   root: {
+    display: 'flex',
+    flexDirection: 'column',
     marginBottom: '16px',
     maxWidth: '410px',
   },
@@ -18,10 +20,19 @@ const useStyles = makeStyles({
     height: '200px',
   },
   content: {
-    marginTop: '32px',
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1,
     '& * + *': {
       marginTop: '8px'
     },
+    '& h2': {
+      paddingTop: '16px',
+      paddingBottom: '24px',
+    },
+    '& :nth-child(2)': {
+      marginTop: 'auto'
+    }
   }
 })
 
