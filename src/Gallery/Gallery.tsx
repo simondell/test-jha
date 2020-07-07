@@ -2,12 +2,11 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import { styled } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { Waypoint } from 'react-waypoint';
 import GalleryGrid from '../GalleryGrid/GalleryGrid';
 import GalleryCard from '../GalleryCard/GalleryCard';
-
-import { styled } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 const ProgressWrapper = styled('div')({
   display: 'flex',
@@ -93,18 +92,18 @@ export default function () {
       }
       </GalleryGrid>
 
-     {hasMore &&
-      <Waypoint
-        onEnter={readNextPage}
-        topOffset="-100px"
-      >
-        <ProgressWrapper>
-          <CircularProgress
-            size="40px"
-          />
-        </ProgressWrapper>
-      </Waypoint>
-    }
-    </>
+      {hasMore &&
+        <Waypoint
+          onEnter={readNextPage}
+          topOffset="-100px"
+        >
+          <ProgressWrapper>
+            <CircularProgress
+              size="40px"
+            />
+          </ProgressWrapper>
+        </Waypoint>
+      }
+      </>
   )
 }
