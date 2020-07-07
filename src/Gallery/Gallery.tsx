@@ -2,8 +2,18 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { styled } from '@material-ui/core/styles';
+import { Waypoint } from 'react-waypoint';
 import GalleryGrid from '../GalleryGrid/GalleryGrid';
 import GalleryCard from '../GalleryCard/GalleryCard';
+
+const ProgressWrapper = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  padding: '24px 0',
+})
 
 export interface Person {
   displayname?: string;
@@ -44,6 +54,7 @@ export default function () {
   }, [])
 
   return (
+    <>
     <GalleryGrid>
     {
       records.map((record: Record) =>
@@ -54,5 +65,16 @@ export default function () {
       )
     }
     </GalleryGrid>
+    <Waypoint
+      onEnter={() => { console.log('enter!'); }}
+      topOffset="-100px"
+    >
+      <ProgressWrapper>
+        <CircularProgress
+          size="40px"
+        />
+      </ProgressWrapper>
+    </Waypoint>
+    </>
   )
 }
