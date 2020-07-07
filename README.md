@@ -26,8 +26,14 @@ We will inspect the quality of the code and your design approach, however please
 - results pages have both an index/page_number and also prev/next links. Experience suggests it'll be easier to embed the main search url in code and increment a page count, than to use the prev/next links.
 - Added Material-UI and removed the fluff CRA put in.
 - Add a basic APi read to get first page of data. Component state is fine for this stage of development
-- 
-
+- Lay out some cards for art items: use MUI
+- Some of the card layout was really fiddly... I changed my mind around artist/title a couple of times. Eventually used the title as the "h2" because it was more consistently present in the data
+- Added a grid to hold the cards. Mostly stole the code from CSS-Tricks.
+- It's not IE-friendly code. I decided this was ok for a tech test that was supposed to be complete in 2-3 hours
+- TBH it took me a lot longer than 2-3 hours. GEtting the logic and code factoring around loading multiple pages of data was troublesome. I tried two or three different factors (including trying to abstract it out of the Gallery.tsx into its own hook because that would have given me a more sensible place to define the Record and Person types, too). The submitted solution uses `useEffect()` in the Gallery component itself. This was the more comfortable blend of factoring that prevented infinite retries
+- I tried to factor out the Progress Indicator into its own component, but Waypoint didn't tolerate the child component defined in a different file. I attempted to fix this following the suggestions on Waypoint's docs, around forwarding a DOM ref, but that didn't fix the problem. I gave up.
+- There's an error in the console about the wrong sort of child. It's something to do with the Cards. It only appeared after I started loading mutliple pages of records. I don't know what it is. I tried a couple of things to make it go away but gave up due to spending too long on it. I wouldn't tolerate this in production.
+- I didn't write any tests. There was no stateful business logic beyond fetching data. I could have written component tests using react-testing-library, but I thought that showing paged data and some comfortable CSS + ui was more valuable in a job application, givewn the recommended time constraint. Again, I would write more tests in production. I'm not one to aim for 100% coverage. I like to write end-to-end "smoke tests" to prove out core functionality/experience, and "contract tests" to prove out glue between components/modules/domain boundaries. I'm sorry I didn't show these here.
 
 # Setup
 
