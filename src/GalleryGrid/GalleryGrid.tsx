@@ -1,6 +1,7 @@
 import { styled } from '@material-ui/core/styles';
 
 const GalleryGrid = styled('div')({
+  paddingTop: '24px',
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
   gridGap: '32px',
