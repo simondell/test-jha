@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import GalleryGrid from '../GalleryGrid/GalleryGrid'
 
 const useStyles = makeStyles({
   root: {
@@ -43,7 +44,7 @@ export default function (props: Props) {
   const classes = useStyles()
 
   return (
-    <div>
+    <GalleryGrid>
     {
       props.records.map((record: Record) =>
           <Card
@@ -88,6 +89,6 @@ export default function (props: Props) {
           </Card>
       )
     }
-    </div>
+    </GalleryGrid>
   )
 }
