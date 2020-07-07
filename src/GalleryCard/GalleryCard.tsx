@@ -31,6 +31,7 @@ interface Props {
 
 export default function ({ artwork }: Props) {
   const classes = useStyles();
+  const person = artwork.people?.[0]
 
   return (
     <Card
@@ -45,20 +46,20 @@ export default function ({ artwork }: Props) {
       <CardContent
         className={classes.content}
       >
-        {artwork.people && artwork.people.length > 0 &&
-          <Typography
-            variant="h5"
-            component="h2"
-          >
-            {artwork.people[0].displayname}
-          </Typography>
-        }
         <Typography
-          variant="subtitle2"
-          component="p"
+          variant="h5"
+          component="h2"
         >
           {artwork.title}
         </Typography>
+        {person &&
+          <Typography
+            variant="subtitle2"
+            component="p"
+          >
+            {person.displayname || person.name}
+          </Typography>
+        }
         <Typography
           variant="body2"
           component="p"
