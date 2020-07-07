@@ -6,9 +6,10 @@ import GalleryGrid from '../GalleryGrid/GalleryGrid';
 import GalleryCard from '../GalleryCard/GalleryCard';
 
 export interface Person {
-  prefix?: string// null,
-  personid: number// 26704,
-  displayname: string;// "Katsushika Sōji (Isai)"
+  displayname?: string;
+  name: string;
+  prefix?: string;
+  personid: number;
 }
 
 export interface Record {
