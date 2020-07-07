@@ -7,8 +7,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import GalleryGrid from '../GalleryGrid/GalleryGrid'
-import GalleryCard from '../GalleryCard/GalleryCard'
+import GalleryGrid from '../GalleryGrid/GalleryGrid';
+import GalleryCard from '../GalleryCard/GalleryCard';
 
 const useStyles = makeStyles({
   root: {
