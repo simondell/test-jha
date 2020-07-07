@@ -2,28 +2,8 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
 import GalleryGrid from '../GalleryGrid/GalleryGrid';
 import GalleryCard from '../GalleryCard/GalleryCard';
-
-const useStyles = makeStyles({
-  root: {
-    marginBottom: '16px',
-    maxWidth: '410px',
-  },
-  media: {
-    height: '200px',
-  },
-  content: {
-    '& * + *': {
-      marginTop: '8px'
-    },
-  }
-})
 
 export interface Person {
   prefix?: string// null,
@@ -41,8 +21,6 @@ export interface Record {
 }
 
 export default function () {
-  const classes = useStyles()
-
   const [records, setRecords] = useState([] as Record[]);
 
   useEffect(() => {

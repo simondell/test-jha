@@ -75,6 +75,3 @@ export default function ({ artwork }: Props) {
     </Card>
   );
 }
-
-
-
