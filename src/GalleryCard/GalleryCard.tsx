@@ -25,7 +25,11 @@ const useStyles = makeStyles({
   }
 })
 
-export default function (artwork: Record) {
+interface Props {
+  artwork: Record
+}
+
+export default function ({ artwork }: Props) {
   const classes = useStyles();
 
   return (
