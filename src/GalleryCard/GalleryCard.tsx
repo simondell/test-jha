@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     height: '200px',
   },
   content: {
+    marginTop: '32px',
     '& * + *': {
       marginTop: '8px'
     },
