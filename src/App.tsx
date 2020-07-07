@@ -8,7 +8,7 @@ import Gallery from './Gallery/Gallery';
 function App() {
   return (
     <div className="App">
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Container
           maxWidth="lg"
         >
