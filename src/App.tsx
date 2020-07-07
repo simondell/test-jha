@@ -17,7 +17,7 @@ function App() {
               component="h1"
               variant="h4"
             >
-              Harvard Art
+              Harvard Art Collection
             </Typography>
           </Toolbar>
         </Container>
