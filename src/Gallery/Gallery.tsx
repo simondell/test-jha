@@ -68,46 +68,9 @@ export default function () {
     <GalleryGrid>
     {
       records.map((record: Record) =>
-          <Card
-            className={classes.root}
-            key={record.id}
-          >
-            <CardMedia
-              className={classes.media}
-              image={record.primaryimageurl}
-              title={record.title}
-            />
-            <CardContent
-              className={classes.content}
-            >
-              {record.people && record.people.length > 0 &&
-                <Typography
-                  variant="h5"
-                  component="h2"
-                >
-                  {record.people[0].displayname}
-                </Typography>
-              }
-              <Typography
-                variant="subtitle2"
-                component="p"
-              >
-                {record.title}
-              </Typography>
-              <Typography
-                variant="body2"
-                component="p"
-              >
-                {record.medium}
-              </Typography>
-              <Typography
-                variant="body2"
-                component="p"
-              >
-                {record.period}
-              </Typography>
-            </CardContent>
-          </Card>
+        <GalleryCard
+          artwork={record}
+        />
       )
     }
     </GalleryGrid>
