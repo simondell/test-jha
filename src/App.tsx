@@ -8,7 +8,7 @@ import Gallery from './Gallery/Gallery';
 function App() {
   return (
     <div className="App">
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Container
           maxWidth="lg"
         >
@@ -17,7 +17,7 @@ function App() {
               component="h1"
               variant="h4"
             >
-              Harvard Art
+              Harvard Art Collection
             </Typography>
           </Toolbar>
         </Container>
